@@ -43,7 +43,7 @@ header{
     position:absolute;
     left:30px;
     bottom:80px;
-    color:white;
+    color:var(--blanco);
 }
 
 .texto h2{
@@ -57,7 +57,7 @@ header{
 .buscador{
     width:85%;
     height:55px;
-    background:white;
+    background:var(--blanco);
     position:absolute;
     left:50%;
     transform:translateX(-50%);
@@ -70,14 +70,14 @@ header{
     width:55px;
     border:none;
     background:var(--verde);
-    color:white;
+    color:var(--blanco);
     font-size:20px;
 }
 
 .buscar{
     width:55px;
     border:none;
-    background:white;
+    background:var(--blanco);
     color:#999;
     font-size:20px;
 }
@@ -136,7 +136,7 @@ main{
 }
 
 .ofertas h4{
-    color:#777;
+    color: var(--gris);
     margin-bottom:20px;
 }
 
@@ -169,7 +169,7 @@ main{
     top:10px;
     z-index:3;
     background:rgba(0,0,0,.5);
-    color:white;
+    color:var(--blanco);
     font-size:11px;
     padding:3px 8px;
     border-radius:10px;
@@ -180,7 +180,7 @@ main{
     flex:1;
     margin-left:-40px;
 
-    background:white;
+    background:var(--blanco);
     border-radius:22px;
     box-shadow:0 5px 12px rgba(0,0,0,.18);
 
@@ -198,7 +198,7 @@ main{
     right:15px;
     top:-15px;
     background:var(--verde);
-    color:white;
+    color:var(--blanco);
     padding:8px 10px;
     border-radius:10px;
     font-weight:bold;
@@ -207,6 +207,6 @@ main{
 }
 
 .estrellas{
-    color:#1fd4a7;
+    color:var(--verde);
     margin-top:8px;
 }

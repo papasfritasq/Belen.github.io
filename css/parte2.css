@@ -1,0 +1,144 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --verde:#1fd4a7;
+    --gris:#888;
+    --texto:#333;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f5f5f5;
+}
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:25px 60px;
+    background:white;
+}
+
+.cerrar{
+    background:none;
+    border:none;
+    font-size:24px;
+    color:var(--texto);
+    cursor:pointer;
+    width:30px;
+}
+
+.titulo{
+    font-size:22px;
+    font-weight:bold;
+    flex:1;
+    text-align:center;
+    margin-right:30px;
+    color:var(--texto);
+}
+
+.tabs{
+    display:flex;
+    justify-content:center;
+    background:white;
+    padding-bottom:15px;
+}
+
+.tab{
+    font-size:14px;
+    letter-spacing:1px;
+    color:var(--gris);
+    padding-bottom:10px;
+    cursor:pointer;
+}
+
+.tab.activo{
+    color:var(--texto);
+    font-weight:bold;
+    border-bottom:2px solid var(--verde);
+}
+
+.platos{
+    max-width:1000px;
+    margin:0 auto;
+    padding:50px 60px;
+    overflow-y:auto;
+    height:calc(100dvh - 145px - 70px);
+
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:60px 80px;
+}
+
+.plato{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.plato-img{
+    position:relative;
+    width:90px;
+    height:90px;
+    flex-shrink:0;
+}
+
+.plato-img img{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    object-fit:cover;
+    display:block;
+}
+
+.precio{
+    position:absolute;
+    right:-12px;
+    bottom:0;
+    background:var(--verde);
+    color:white;
+    font-size:13px;
+    font-weight:bold;
+    padding:5px 10px;
+    border-radius:8px;
+}
+
+.plato-info h4{
+    font-size:17px;
+    margin-bottom:6px;
+    color:var(--texto);
+}
+
+.plato-info p{
+    font-size:13px;
+    color:var(--gris);
+}
+
+.nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:white;
+    display:flex;
+    justify-content:center;
+    gap:100px;
+    padding:22px 0;
+    border-top:1px solid #eee;
+}
+
+.nav-item{
+    font-size:13px;
+    letter-spacing:1px;
+    color:var(--gris);
+    cursor:pointer;
+}
+
+.nav-item.activo{
+    color:var(--texto);
+    font-weight:bold;
+}
