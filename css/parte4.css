@@ -1,0 +1,143 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --verde:#1fd4a7;
+    --gris:#999;
+    --texto:#333;
+    --naranja:#f5a623;
+    --rosa:#e0708a;
+}
+
+html, body{
+    height:100%;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:white;
+    display:flex;
+    flex-direction:column;
+    height:100dvh;
+}
+
+.foto-resto{
+    position:relative;
+    width:100%;
+    height:300px;
+    flex-shrink:0;
+}
+
+.foto-resto img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.rating-resto{
+    position:absolute;
+    right:80px;
+    bottom:-30px;
+    background:var(--verde);
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    padding:12px 22px;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 14px;
+    border-bottom-left-radius: 0px;
+    box-shadow:0 6px 14px rgba(0,0,0,.2);
+}
+
+.contenido{
+    flex:1;
+    overflow-y:auto;
+    display:flex;
+    justify-content:center;
+}
+
+.contenido-inner{
+    width:100%;
+    max-width:550px;
+}
+
+.detalle-resto{
+    padding:55px 25px 0;
+    text-align:left;
+}
+
+.nombre-resto{
+    font-size:26px;
+    color:var(--texto);
+}
+
+.precio-resto{
+    font-size:16px;
+    color:var(--verde);
+    font-weight:bold;
+    margin-top:10px;
+}
+
+.tipo-resto{
+    font-size:14px;
+    color:var(--gris);
+    margin-top:8px;
+}
+
+.iconos{
+    display:flex;
+    align-items:flex-start;
+    gap:60px;
+    padding:40px 25px;
+}
+
+.icono-item{
+    text-align:center;
+}
+
+.icono-item i{
+    font-size:24px;
+}
+
+.icono-item p{
+    font-size:12px;
+    color:var(--gris);
+    margin-top:10px;
+}
+
+.descripcion-resto{
+    padding:0 25px 40px;
+    font-size:14px;
+    color:var(--gris);
+    line-height:1.8;
+}
+
+.nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:white;
+    display:flex;
+    justify-content:center;
+    gap:100px;
+    padding:22px 0;
+    border-top:1px solid #eee;
+}
+
+.nav-item{
+    font-size:13px;
+    letter-spacing:1px;
+    color:var(--gris);
+    cursor:pointer;
+}
+
+.nav-item.activo{
+    color:var(--texto);
+    font-weight:bold;
+}

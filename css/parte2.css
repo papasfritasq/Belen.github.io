@@ -104,7 +104,10 @@ body{
     font-size:13px;
     font-weight:bold;
     padding:5px 10px;
-    border-radius:8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 0px;
 }
 
 .plato-info h4{

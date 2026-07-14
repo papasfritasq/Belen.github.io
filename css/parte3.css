@@ -8,6 +8,11 @@
     --verde:#1fd4a7;
     --gris:#999;
     --texto:#333;
+    --blanco:#fff;
+}
+
+html, body{
+    height:100%;
 }
 
 body{
@@ -15,12 +20,21 @@ body{
     background:white;
     max-width:400px;
     margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    height:100dvh;
+}
+
+.header{
+    position:relative;
+    flex-shrink:0;
 }
 
 .foto-plato{
     position:relative;
     width:100%;
-    height:320px;
+    height:300px;
+    flex-shrink:0;
 }
 
 .foto-plato img{
@@ -44,28 +58,37 @@ body{
     cursor:pointer;
 }
 
-.detalle{
-    position:relative;
-    padding:80px 25px 20px;
-}
-
 .precio-detalle{
     position:absolute;
     right:25px;
-    top:-30px;
+    bottom:-25px;
     background:var(--verde);
     color:white;
     font-size:18px;
     font-weight:bold;
     padding:12px 22px;
-    border-radius:14px;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 14px;
+    border-bottom-left-radius: 0px;
     box-shadow:0 6px 14px rgba(0,0,0,.2);
+    z-index:5;
+}
+
+.detalle{
+    flex:1;
+    overflow-y:auto;
+
+    padding:45px 25px 20px;
+
+    display:flex;
+    flex-direction:column;
 }
 
 .nombre-plato{
     font-size:22px;
     color:var(--texto);
-    max-width:220px;
+    max-width:260px;
     line-height:1.3;
 }
 
@@ -73,11 +96,12 @@ body{
     font-size:14px;
     color:var(--gris);
     line-height:1.7;
-    margin-top:70px;
+    margin-top:30px;
 }
 
 .nota{
-    margin-top:70px;
+    margin-top:auto;
+    padding-top:30px;
     padding-bottom:20px;
     border-bottom:1px solid #eee;
 }
@@ -91,33 +115,33 @@ body{
 }
 
 .acciones{
+    flex-shrink:0;
     display:flex;
     align-items:center;
     gap:15px;
-    padding:70px 25px 30px;
+    padding:20px 25px 30px;
 }
 
 .cantidad{
     display:flex;
     align-items:center;
-    gap:15px;
-    background:#f2f2f2;
-    padding:12px 18px;
-    border-radius:14px;
+    gap:16px;
+    background:var(--verde);
+    padding:14px 14px;
 }
 
 .cantidad button{
     background:none;
     border:none;
     font-size:18px;
-    color:var(--texto);
+    color:var(--blanco);
     cursor:pointer;
     font-weight:bold;
 }
 
 .cantidad span{
     font-size:16px;
-    color:var(--texto);
+    color:var(--blanco );
     min-width:15px;
     text-align:center;
 }
@@ -128,7 +152,6 @@ body{
     color:white;
     border:none;
     padding:16px;
-    border-radius:14px;
     font-size:14px;
     font-weight:bold;
     letter-spacing:1px;
