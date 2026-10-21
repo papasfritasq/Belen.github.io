@@ -1,0 +1,346 @@
+:root {
+  --bg-warm: #FAF8F5;
+  --card-bg: #FFFFFF;
+  --text-main: #1A1A1A;
+  --text-muted: #737373;
+  --accent-brown: #B25942;
+  --accent-brown-hover: #984632;
+  --border-color: #E8E3DD;
+  --input-bg: #FAF8F5;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+}
+
+body {
+  background: var(--bg-warm);
+  color: var(--text-main);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+.font-serif {
+  font-family: 'Playfair Display', serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* =========================================================
+   LAYOUT PRINCIPAL DIVIDIDO EN 2 COLUMNAS
+   ========================================================= */
+
+.login-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+  width: 100%;
+  gap: 0;
+}
+
+@media (min-width: 1024px) {
+  .login-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+}
+
+/* =========================================================
+   PANEL IZQUIERDO - FORMULARIO
+   ========================================================= */
+
+.login-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 24px;
+  max-width: 440px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.login-left > * {
+  width: 100%;
+}
+
+/* Logo + nombre: mismo bloque en login.css y register.css */
+.brand-logo,
+.register-right > a:first-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: transparent;
+}
+
+.logo-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-logo-text {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.login-left h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.login-left p.description {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 32px;
+}
+
+/* =========================================================
+   FORMULARIO E INPUTS
+   ========================================================= */
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.label-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.forgot-link {
+  font-size: 0.75rem;
+  color: var(--accent-brown);
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 500;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.toggle-pass {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+input {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px 0 42px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--input-bg);
+  color: var(--text-main);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+input:focus {
+  border-color: var(--accent-brown);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(178, 89, 66, 0.15);
+}
+
+/* =========================================================
+   MENSAJE DE ERROR
+   ========================================================= */
+
+#msg__error {
+  display: none;
+  background: rgba(214, 90, 70, 0.1);
+  border: 1px solid rgba(214, 90, 70, 0.35);
+  color: var(--accent-brown);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+#msg__error:not(:empty) {
+  display: block;
+}
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+
+.btn-submit {
+  width: 100%;
+  height: 46px;
+  background: var(--accent-brown);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+  margin-top: 8px;
+}
+
+.btn-submit:hover {
+  background: var(--accent-brown-hover);
+}
+
+.divider-box {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px dashed var(--border-color);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.register-link {
+  color: var(--accent-brown);
+  font-weight: 600;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   PANEL DERECHO - DECORATIVO BANNER TERRACOTA
+   ========================================================= */
+
+.login-right {
+  display: none;
+  background-color: var(--accent-brown);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  padding: 60px;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  justify-content: flex-start;
+  padding-top: calc(50vh - 146px); /* mismo punto de arranque en login y register */
+}
+
+@media (min-width: 1024px) {
+  .login-right {
+    display: flex;
+  }
+}
+
+/* =========================================================
+   FONDO DECORATIVO
+   ========================================================= */
+
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.15;
+  background-image: radial-gradient(circle at 75% 25%, white, transparent 45%),
+                    radial-gradient(circle at 15% 85%, white, transparent 40%);
+}
+
+.right-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 0 0 auto; /* pegado al borde derecho, espejo de register */
+  text-align: right;
+}
+
+.ticket-icon {
+  width: 56px;
+  height: 56px;
+  margin-left: auto;
+  margin-bottom: 24px;
+  transform: rotate(-10deg);
+  opacity: 0.9;
+}
+
+.login-right h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.login-right p {
+  font-size: 1rem;
+  opacity: 0.85;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.icons-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  opacity: 0.7;
+}

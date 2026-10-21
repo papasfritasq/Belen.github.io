@@ -1,0 +1,280 @@
+/* =========================================================
+   FILTROS.CSS — buscador + filtros reutilizables
+   Usalo en cualquier página con:
+   <link rel="stylesheet" href="public/css/filtros.css">
+   ========================================================= */
+
+/* Variables que usa este archivo (mismos valores que stylesheet.css) */
+:root {
+  --cream: #fbf7f1;
+  --cream-soft: #f5eee3;
+  --surface: #ffffff;
+  --ink: #221d18;
+  --ink-soft: #766e63;
+  --ink-faint: #a49a8c;
+  --line: #ebe3d6;
+  --line-strong: #ded3c1;
+
+  --rust: #a8462e;
+  --rust-dark: #883620;
+  --rust-tint: #f4ddd2;
+
+  --radius-lg: 22px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 1px 2px rgba(34, 29, 24, 0.04), 0 10px 28px rgba(34, 29, 24, 0.06);
+  --shadow-pop: 0 16px 40px rgba(34, 29, 24, 0.16);
+}
+
+
+/* ---------------------------------------------------------
+   Caja de filtros
+--------------------------------------------------------- */
+.filters-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px 8px;
+}
+
+.cs-select > select { display: none; }
+
+.filters-box {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 22px 24px;
+}
+
+
+/* ---------------------------------------------------------
+   Buscador
+--------------------------------------------------------- */
+.search-container {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.search-container .search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-faint);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--cream);
+  border-radius: var(--radius-pill);
+  padding: 13px 20px 13px 44px;
+  font-size: 14.5px;
+  font-family: inherit;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.search-input::placeholder { color: var(--ink-faint); }
+.search-input:focus { border-color: var(--rust); }
+
+
+/* ---------------------------------------------------------
+   Grilla de filtros
+--------------------------------------------------------- */
+.filters-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+/* Variante con 4 filtros (panel) */
+.filters-grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+.filter { position: relative; }
+
+.filter-control {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: var(--radius-pill);
+  padding: 11px 18px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--ink);
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.filter-control:focus,
+.filter-control:hover { border-color: var(--line-strong); }
+
+
+
+.filters-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.link-limpiar-filtros {
+  font-size: 0.85rem;
+  color: #666;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.link-limpiar-filtros:hover { color: #000; }
+
+.event-counter {
+  margin-top: 16px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.event-counter strong { color: var(--ink); font-weight: 700; }
+
+
+/* ---------------------------------------------------------
+   Select custom (lo genera filtros.js)
+--------------------------------------------------------- */
+.cs-select { position: relative; }
+
+.cs-select select { display: none; }
+
+.cs-trigger {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: var(--radius-pill);
+  padding: 11px 34px 11px 18px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.15s ease;
+}
+
+.cs-trigger:hover { border-color: var(--line-strong); }
+
+.cs-select.open .cs-trigger {
+  border-color: var(--rust);
+  border-radius: var(--radius-pill) var(--radius-pill) var(--radius-sm) var(--radius-sm);
+}
+
+.cs-trigger::after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-right: 1.6px solid var(--ink-faint);
+  border-bottom: 1.6px solid var(--ink-faint);
+  transform: translateY(-65%) rotate(45deg);
+  transition: transform 0.15s ease;
+}
+
+.cs-select.open .cs-trigger::after {
+  transform: translateY(-35%) rotate(-135deg);
+}
+
+.cs-panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 100%;
+  max-height: 320px;
+  overflow-y: auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-pop);
+  padding: 6px;
+  z-index: 60;
+  display: none;
+}
+
+.cs-select.open .cs-panel { display: block; }
+
+.cs-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.cs-option > span:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  line-height: 1.3;
+}
+
+.cs-option:hover { background: var(--cream-soft); }
+
+.cs-option.selected {
+  background: var(--rust-tint);
+  color: var(--rust-dark);
+  font-weight: 600;
+}
+
+.cs-option .cs-check {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  position: relative;
+  opacity: 0;
+}
+
+.cs-option.selected .cs-check { opacity: 1; }
+
+.cs-option .cs-check::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: 3px;
+  width: 8px;
+  height: 4px;
+  border-left: 2px solid var(--rust-dark);
+  border-bottom: 2px solid var(--rust-dark);
+  transform: rotate(-45deg);
+}
+
+
+/* ---------------------------------------------------------
+   Responsive
+--------------------------------------------------------- */
+@media (max-width: 960px) {
+  .filters-grid,
+  .filters-grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .filters-section { padding: 0 16px 8px; }
+  .filters-box { padding: 16px; }
+  .filters-grid,
+  .filters-grid-4 { grid-template-columns: 1fr; }
+}
+
+
+/* Oculta una sección (la usa el panel al filtrar por estado) */
+.oculto { display: none; }

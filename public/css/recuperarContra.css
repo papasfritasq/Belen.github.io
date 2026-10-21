@@ -1,0 +1,27 @@
+/* Estilos específicos para el mensaje de éxito en la recuperación */
+#msg__exito {
+  display: none;
+  background: rgba(46, 125, 50, 0.1);
+  border: 1px solid rgba(46, 125, 50, 0.35);
+  color: #2e7d32;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+#msg__exito:not(:empty) {
+  display: block;
+}
+
+/* Ajuste visual opcional para el icono de llave del panel derecho */
+.login-right .ticket-icon {
+  transform: rotate(0deg);
+}
+
+/* Campos en azulito (igual que cuando el navegador autocompleta) */
+#txt_email,
+#txt_codigo {
+  background: #e8f0fe;
+}

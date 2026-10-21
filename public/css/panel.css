@@ -1,0 +1,780 @@
+/* =========================================================
+   EventNow — PANEL DEL ANFITRIÓN
+   Misma base que el panel visitante (banner, barra superior,
+   cabecera de sección). El navbar vive en navbar.css y el
+   buscador/filtros en filtros.css: acá NO se pisan, así se
+   ven igual que en el landing y en el panel visitante.
+   ========================================================= */
+
+:root {
+    /* Heredadas: navbar.css y filtros.css pueden usarlas */
+    --bg-warm: #FAF8F5;
+    --bg-surface: #FFFFFF;
+    --bg-surface-hover: #F3EFEA;
+    --text-main: #1A1A1A;
+    --text-muted: #666666;
+    --primary-color: #17242A;
+    --primary-hover: #2b3c43;
+    --accent-color: #A0522D;
+    --accent-hover: #8B4513;
+    --highlight-bg: #E8DCCB;
+    --danger-color: #D65A46;
+    --success-color: #6E8F7A;
+    --border-color: #EAE6E1;
+    --radius: 14px;
+    --shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+
+    /* Paleta */
+    --cream: #fbf7f1;
+    --cream-soft: #f5eee3;
+    --surface: #ffffff;
+    --ink: #221d18;
+    --ink-soft: #766e63;
+    --ink-faint: #a49a8c;
+    --line: #ebe3d6;
+    --line-strong: #ded3c1;
+
+    --rust: #a8462e;
+    --rust-dark: #883620;
+    --rust-tint: #f4ddd2;
+    --rust-tint-soft: #fbefe8;
+    --rust-tint-strong: #eec8b6;
+
+    --green: #3f7a55;
+    --green-tint: #e8f1eb;
+    --red: #b4402f;
+    --red-tint: #f8e3de;
+
+    /* Formas y sombras (--shadow-card igual que filtros.css) */
+    --r-lg: 16px;
+    --r-md: 12px;
+    --r-sm: 8px;
+    --r-pill: 999px;
+
+    --shadow-card: 0 1px 2px rgba(34, 29, 24, 0.04), 0 10px 28px rgba(34, 29, 24, 0.06);
+    --shadow-hover: 0 2px 4px rgba(34, 29, 24, 0.05), 0 18px 38px rgba(34, 29, 24, 0.11);
+
+    /* Banner */
+    --banner-ring: color-mix(in srgb, var(--cream) 16%, transparent);
+    --banner-mark: color-mix(in srgb, var(--cream) 14%, transparent);
+    --shadow-banner: 0 12px 32px -16px color-mix(in srgb, var(--rust-dark) 55%, transparent);
+
+    --serif: "Playfair Display", "Georgia", serif;
+    --sans: "Plus Jakarta Sans", -apple-system, "Segoe UI", sans-serif;
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(180deg, var(--rust-tint-soft) 0, var(--cream) 360px);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+::selection {
+    background: var(--rust-tint-strong);
+    color: var(--ink);
+}
+
+:focus-visible {
+    outline: 2px solid var(--rust);
+    outline-offset: 2px;
+}
+
+.contenedor {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 44px 28px 88px;
+}
+
+.contenedor>* {
+    min-width: 0;
+}
+
+/* =========================================================
+   BARRA SUPERIOR
+   ========================================================= */
+
+.pv-eyebrow {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: var(--rust);
+}
+
+.pv-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.pv-topbar .pv-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pv-topbar .pv-eyebrow::before {
+    content: "";
+    width: 22px;
+    height: 1.5px;
+    background: var(--rust);
+}
+
+.pv-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: .8rem;
+    color: var(--ink-soft);
+}
+
+.pv-note i {
+    color: var(--rust);
+}
+
+/* =========================================================
+   BANNER (idéntico al del panel visitante)
+   ========================================================= */
+
+.profile-header {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 42px;
+    margin-bottom: 32px;
+    background: var(--rust);
+    border: 1px solid var(--rust-dark);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-banner);
+}
+
+.profile-avatar {
+    position: relative;
+    z-index: 1;
+    width: 86px;
+    height: 86px;
+    min-width: 86px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 1px solid var(--rust-tint-strong);
+    box-shadow: 0 0 0 8px var(--banner-ring);
+    color: var(--rust-dark);
+    font-size: 1.9rem;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
+.profile-info {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+    max-width: 78%;
+}
+
+.profile-info h2 {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 2.35rem;
+    line-height: 1.22;
+    letter-spacing: 0;
+    color: var(--cream);
+    overflow-wrap: anywhere;
+}
+
+.profile-tagline {
+    margin-bottom: 10px;
+    font-size: .94rem;
+    line-height: 1.65;
+    color: var(--cream);
+}
+
+.profile-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 18px;
+    font-size: .85rem;
+    line-height: 1.6;
+    color: var(--cream-soft);
+}
+
+.profile-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.profile-meta i {
+    flex-shrink: 0;
+}
+
+.role-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    background: var(--cream);
+    border: 1px solid var(--rust-tint-strong);
+    border-radius: var(--r-pill);
+    color: var(--rust-dark);
+    font-family: var(--sans);
+    font-size: .65rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    line-height: 1.5;
+}
+
+.profile-mark {
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 150px;
+    line-height: 1;
+    color: var(--banner-mark);
+    pointer-events: none;
+    user-select: none;
+    z-index: -1;
+}
+
+/* =========================================================
+   CABECERA DE SECCIÓN
+   ========================================================= */
+
+.eventos-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+    padding-bottom: 20px;
+    margin-bottom: 24px;
+    border-bottom: 2px solid var(--line-strong);
+}
+
+.eventos-header h3 {
+    margin: 8px 0 6px;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 2.2rem;
+    line-height: 1.1;
+    letter-spacing: 0;
+    color: var(--ink);
+}
+
+.eventos-header h3::after {
+    content: ".";
+    color: var(--rust);
+}
+
+.eventos-header p {
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+}
+
+/* =========================================================
+   FILTROS — todo el estilo viene de filtros.css.
+   Acá solo el espacio inferior y el contador del pie.
+   ========================================================= */
+
+#form-filtros {
+    margin-bottom: 26px;
+}
+
+#form-filtros .filters-footer {
+    align-items: center;
+    justify-content: space-between;
+}
+
+#form-filtros .link-limpiar-filtros {
+    margin-left: auto;
+}
+
+.pv-count {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+}
+
+.pv-count:empty {
+    display: none;
+}
+
+/* =========================================================
+   GRILLA DE EVENTOS
+   ========================================================= */
+
+.eventos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    gap: 26px;
+}
+
+.evento {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-card);
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.evento:hover {
+    transform: translateY(-5px);
+    border-color: var(--rust-tint-strong);
+    box-shadow: var(--shadow-hover);
+}
+
+.evento img {
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: var(--cream-soft);
+    transition: transform .55s ease;
+}
+
+.evento:hover img {
+    transform: scale(1.04);
+}
+
+/* Etiqueta de categoría sobre la imagen */
+.evento-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 1;
+    max-width: calc(100% - 28px);
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(4px);
+    border-radius: var(--r-pill);
+    box-shadow: 0 2px 8px rgba(34, 29, 24, 0.12);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   CONTENIDO DE LA TARJETA
+   ========================================================= */
+
+.evento-contenido {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
+    padding: 20px 22px 16px;
+}
+
+.estado {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: var(--r-sm);
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.estado-punto {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.estado-publicado {
+    background: var(--green-tint);
+    color: var(--green);
+}
+
+.estado-borrador {
+    background: var(--cream-soft);
+    color: var(--ink-soft);
+}
+
+.estado-cancelado {
+    background: var(--red-tint);
+    color: var(--red);
+}
+
+.estado-finalizado {
+    background: var(--line);
+    color: var(--ink-soft);
+}
+.estado-revision {
+    background: #fdf1dc;
+    color: #a86a10;
+}
+
+.estado-rechazado {
+    background: var(--red-tint);
+    color: var(--red);
+}
+
+.evento-sin-imagen {
+    display: grid;
+    place-items: center;
+    height: 200px;
+    background: var(--cream-soft);
+    color: var(--ink-faint);
+    font-size: 2rem;
+}
+
+.evento-aviso {
+    padding: 8px 10px;
+    border-left: 3px solid var(--red);
+    border-radius: var(--r-sm);
+    background: var(--red-tint);
+    color: var(--red);
+    font-size: .75rem;
+    line-height: 1.5;
+}
+
+.evento-aviso small {
+    display: block;
+    margin-top: 2px;
+    color: var(--ink-soft);
+}
+
+.botones-evento .deshabilitado {
+    opacity: .5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.evento h2 {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 1.3;
+    letter-spacing: 0;
+    color: var(--ink);
+    overflow-wrap: anywhere;
+}
+
+.evento p {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.evento .evento-descripcion {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: .8rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+}
+
+.evento-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+    margin-top: auto;
+    padding-top: 6px;
+    font-size: .75rem;
+    color: var(--ink-soft);
+}
+
+.evento-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.evento-meta i,
+.evento-lugar i {
+    color: var(--rust);
+}
+
+.meta-sep {
+    color: var(--ink-faint);
+}
+
+.evento .evento-lugar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: .75rem;
+    line-height: 1.4;
+    color: var(--ink-soft);
+}
+
+/* =========================================================
+   BOTONES DE LA TARJETA
+   ========================================================= */
+
+.botones-evento {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 0 22px;
+    padding: 14px 0 18px;
+    border-top: 1px solid var(--line);
+}
+
+.botones-evento a,
+.botones-evento button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-width: 0;
+    font-family: var(--sans);
+    font-size: .75rem;
+    font-weight: 600;
+    line-height: 1.4;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease, border-color .15s ease, transform .1s ease;
+}
+
+.botones-evento i {
+    flex-shrink: 0;
+}
+
+.botones-evento a:active,
+.botones-evento button:active {
+    transform: scale(.97);
+}
+
+.botones-evento button:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.botones-evento .btn-editar {
+    padding: 8px 14px;
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-sm);
+    box-shadow: 0 1px 2px rgba(34, 29, 24, 0.06);
+    color: var(--ink);
+}
+
+.botones-evento .btn-editar:hover {
+    border-color: var(--rust);
+    color: var(--rust-dark);
+    background: var(--rust-tint-soft);
+}
+
+.botones-evento .btn-cancelar {
+    padding: 8px 4px;
+    background: none;
+    border: none;
+    color: var(--ink-faint);
+}
+
+.botones-evento .btn-cancelar:hover {
+    color: var(--red);
+}
+
+/* =========================================================
+   ESTADO VACÍO
+   ========================================================= */
+
+.empty-state {
+    grid-column: 1 / -1;
+    padding: 54px 28px;
+    text-align: center;
+    background: var(--rust-tint-soft);
+    border: 1px dashed var(--rust-tint-strong);
+    border-radius: var(--r-lg);
+    color: var(--ink-soft);
+}
+
+.empty-state i {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: var(--surface);
+    box-shadow: var(--shadow-card);
+    font-size: 1.65rem;
+    color: var(--rust);
+}
+
+.empty-state h3 {
+    margin-bottom: 7px;
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    color: var(--ink);
+}
+
+.empty-state p {
+    font-size: 0.88rem;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 640px) {
+    .profile-mark {
+        display: none;
+    }
+
+    .contenedor {
+        padding: 26px 18px 64px;
+    }
+
+    .profile-header {
+        padding: 30px 24px;
+        gap: 22px;
+    }
+
+    .profile-info {
+        max-width: 100%;
+    }
+
+    .profile-info h2 {
+        font-size: 1.8rem;
+    }
+
+    .profile-avatar {
+        width: 70px;
+        height: 70px;
+        min-width: 70px;
+    }
+
+    .eventos-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .eventos-header h3 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .contenedor {
+        padding: 25px 15px 60px;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 26px 22px;
+    }
+
+    .profile-info h2,
+    .profile-meta {
+        justify-content: center;
+    }
+
+    .eventos {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 380px) {
+    .contenedor {
+        padding-inline: 12px;
+    }
+
+    .profile-info h2 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (hover: none) {
+
+    .evento:hover,
+    .evento:hover img {
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+
+    .evento:hover,
+    .evento:hover img {
+        transform: none;
+    }
+}

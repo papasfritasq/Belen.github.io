@@ -1,0 +1,1388 @@
+/* EventNow — versión renovada. Reemplazá el archivo completo.
+   Paleta original conservada; no requiere nuevas clases ni cambios en HTML. */
+
+/* =========================================================
+   EventNow — PANEL VISITANTE
+   El navbar vive en navbar.css; el buscador y los filtros,
+   en filtros.css. Acá solo lo propio de esta vista.
+   Sistema: cálido y editorial — crema, terracota, serif.
+   ========================================================= */
+
+:root {
+    /* Heredadas: navbar.css y filtros.css pueden usarlas */
+    --bg-warm: #FAF8F5;
+    --bg-surface: #FFFFFF;
+    --bg-surface-hover: #F3EFEA;
+    --text-main: #1A1A1A;
+    --text-muted: #666666;
+    --primary-color: #17242A;
+    --primary-hover: #2b3c43;
+    --accent-color: #A0522D;
+    --accent-hover: #8B4513;
+    --highlight-bg: #E8DCCB;
+    --danger-color: #D65A46;
+    --success-color: #6E8F7A;
+    --border-color: #EAE6E1;
+    --radius: 14px;
+    --shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+
+    /* Paleta */
+    --cream: #fbf7f1;
+    --cream-soft: #f5eee3;
+    --surface: #ffffff;
+    --ink: #221d18;
+    --ink-soft: #766e63;
+    --ink-faint: #a49a8c;
+    --line: #ebe3d6;
+    --line-strong: #ded3c1;
+
+    --rust: #a8462e;
+    --rust-dark: #883620;
+    --rust-tint: #f4ddd2;
+    --rust-tint-soft: #fbefe8;
+    --rust-tint-strong: #eec8b6;
+
+    --green: #3f7a55;
+    --green-tint: #e8f1eb;
+
+    /* Formas y sombras */
+    --r-lg: 16px;
+    --r-md: 12px;
+    --r-sm: 8px;
+    --r-pill: 999px;
+
+    --serif: "Playfair Display", "Georgia", serif;
+    --sans: "Plus Jakarta Sans", -apple-system, "Segoe UI", sans-serif;}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        linear-gradient(180deg, var(--rust-tint-soft) 0, var(--cream) 360px);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+::selection {
+    background: var(--rust-tint-strong);
+    color: var(--ink);
+}
+
+:focus-visible {
+    outline: 2px solid var(--rust);
+    outline-offset: 2px;
+}
+
+.contenedor {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 44px 28px 88px;
+}
+
+/* =========================================================
+   BARRA SUPERIOR
+   ========================================================= */
+
+.pv-eyebrow {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--rust);}
+
+.pv-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding-block: 8px;
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--rust-dark);
+    transition: color .2s ease;
+}
+
+.pv-link:hover {
+    color: var(--rust);
+    gap: 12px;
+}
+
+/* =========================================================
+   PERFIL
+   ========================================================= */
+
+.profile-header {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 42px;
+    margin-bottom: 32px;
+    background: var(--rust);
+    border: 1px solid var(--rust-dark);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-banner);
+}
+
+.profile-avatar {
+    position: relative;
+    z-index: 1;
+    width: 86px;
+    height: 86px;
+    min-width: 86px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 1px solid var(--rust-tint-strong);
+    box-shadow: 0 0 0 8px var(--banner-ring);
+    color: var(--rust-dark);
+    font-size: 1.9rem;
+}
+
+.profile-info {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+    max-width: 78%;
+}
+
+.profile-info h2 {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 2.35rem;
+    line-height: 1.22;
+    letter-spacing: 0;
+    color: var(--cream);
+    overflow-wrap: anywhere;
+}
+
+.profile-tagline {
+    margin-bottom: 10px;
+    font-size: .94rem;
+    line-height: 1.65;
+    color: var(--cream);
+}
+
+.profile-info .email {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: .85rem;
+    line-height: 1.6;
+    color: var(--cream-soft);
+    overflow-wrap: anywhere;
+}
+
+.role-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    background: var(--cream);
+    border: 1px solid var(--rust-tint-strong);
+    border-radius: var(--r-pill);
+    color: var(--rust-dark);
+    font-family: var(--sans);
+    font-size: .65rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    line-height: 1.5;
+}
+
+.profile-mark {
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 150px;
+    line-height: 1;
+    color: var(--banner-mark);
+    pointer-events: none;
+    user-select: none;
+    z-index: -1;
+}
+
+.profile-mark i {
+    font-style: normal;
+    color: rgba(168, 70, 46, 0.18);
+}
+
+/* =========================================================
+   OPCIONES (favoritos / calendario)
+   ========================================================= */
+
+.pv-section-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 34px 0 14px;
+}
+
+.pv-section-label span {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--ink-soft);}
+
+.pv-section-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+}
+
+.opciones {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 44px;
+}
+
+.opcion {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    min-width: 0;
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow-card);
+    cursor: pointer;
+    transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.opcion:hover {
+    transform: translateY(-2px);
+    border-color: var(--line-strong);
+    box-shadow: var(--shadow-hover);
+}
+
+.opcion:active {
+    transform: translateY(0);
+}
+
+.opcion.activa {
+    background: var(--rust-tint-soft);
+    border-color: var(--rust);
+    box-shadow: inset 0 -3px 0 var(--rust), var(--shadow-card);
+}
+
+.opcion-icono {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--r-md);
+    background: var(--rust-tint);
+    color: var(--rust);
+    font-size: 1.3rem;
+    transition: background .2s ease, color .2s ease;
+}
+
+.opcion.activa .opcion-icono {
+    background: var(--rust);
+    color: var(--surface);
+}
+
+.opcion-texto {
+    min-width: 0;
+    flex: 1;
+}
+
+.opcion-texto h3 {
+    margin-bottom: 5px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.opcion-texto p {
+    font-size: 0.77rem;
+    line-height: 1.4;
+    color: var(--ink-soft);
+}
+
+.opcion-flecha {
+    flex-shrink: 0;
+    font-size: 12px;
+    color: var(--rust);
+    transition: transform 0.18s ease;
+}
+
+.opcion:hover .opcion-flecha {
+    transform: translateX(4px);
+}
+
+/* =========================================================
+   CABECERA DE SECCIÓN
+   ========================================================= */
+
+.contenido {
+    display: none;
+}
+
+.contenido.activo {
+    display: block;
+    animation: aparecer 0.3s ease;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.eventos-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+    padding-bottom: 20px;
+    margin-bottom: 24px;
+    border-bottom: 2px solid var(--line-strong);
+}
+
+.eventos-header h3 {
+    margin: 8px 0 6px;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 2.2rem;
+    line-height: 1.1;
+    letter-spacing: 0;
+    color: var(--ink);
+}
+
+.eventos-header h3::after {
+    content: ".";
+    color: var(--rust);
+}
+
+.eventos-header p {
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+}
+
+.pv-count {
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--ink-soft);}
+
+/* Filtros: todo el estilo viene de filtros.css (igual que el landing).
+   Acá solo el espacio inferior propio de esta vista. */
+#filtros-favoritos {
+    margin-bottom: 22px;
+}
+
+/* =========================================================
+   TARJETA DE EVENTO
+   ========================================================= */
+
+.eventos {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.evento {
+    position: relative;
+    display: grid;
+    grid-template-columns: 230px minmax(0, 1fr) 165px;
+    gap: 24px;
+    align-items: stretch;
+    min-width: 0;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-card);
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.evento:hover {
+    transform: translateY(-3px);
+    border-color: var(--line-strong);
+    box-shadow: var(--shadow-hover);
+}
+
+.evento img {
+    display: block;
+    width: 100%;
+    height: 190px;
+    min-height: 190px;
+    object-fit: cover;
+    border-radius: var(--r-sm);
+    background: var(--cream-soft);
+}
+
+.evento-badge {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(4px);
+    border-radius: var(--r-pill);
+    box-shadow: 0 2px 8px rgba(34, 29, 24, 0.12);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.evento-contenido {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    padding: 2px 0;
+}
+
+.evento h2 {
+    margin: 0 0 8px;
+    padding-right: 0;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.45rem;
+    line-height: 1.3;
+    letter-spacing: 0;
+    color: var(--ink);
+}
+
+.evento p {
+    margin: 0;
+    font-size: .85rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    overflow-wrap: anywhere;
+}
+
+.precio {
+    position: static;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: flex-start;
+    gap: 10px;
+    margin: auto 0 0;
+    padding: 10px 0 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.precio::before {
+    content: "Entrada";
+    font-family: var(--sans);
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+}
+
+.precio-gratis {
+    background: none;
+    color: var(--green);
+}
+
+.botones-evento {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 0 0 18px;
+    border-top: none;
+    border-left: 1px solid var(--line);
+}
+
+.botones-evento a,
+.botones-evento button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 8px;
+    border: none;
+    border-radius: var(--r-sm);
+    background: none;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.botones-evento a:hover,
+.botones-evento button:hover {
+    color: var(--rust);
+}
+
+.botones-evento .btn-detalles {
+    padding: 12px;
+    background: var(--rust);
+    border: 1px solid var(--rust);
+    font-size: .83rem;
+    font-weight: 600;
+    color: var(--surface);
+}
+
+.botones-evento .btn-detalles:hover {
+    background: var(--rust-dark);
+    border-color: var(--rust-dark);
+    color: var(--surface);
+}
+
+.botones-evento .btn-detalles:active {
+    transform: scale(0.98);
+}
+
+/* =========================================================
+   ESTADO VACÍO
+   ========================================================= */
+
+.empty-state {
+    grid-column: 1 / -1;
+    padding: 54px 28px;
+    text-align: center;
+    background: var(--rust-tint-soft);
+    border: 1px dashed var(--rust-tint-strong);
+    border-radius: var(--r-lg);
+    color: var(--ink-soft);
+}
+
+.empty-state i {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: var(--surface);
+    box-shadow: var(--shadow-card);
+    font-size: 1.65rem;
+    color: var(--rust);
+}
+
+.empty-state h3 {
+    margin-bottom: 7px;
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    color: var(--ink);
+}
+
+.empty-state p {
+    margin-bottom: 18px;
+    font-size: 0.88rem;
+}
+
+.empty-state p:last-child {
+    margin-bottom: 0;
+}
+
+/* =========================================================
+   CALENDARIO — controles
+   ========================================================= */
+
+.calendario-barra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.controles-calendario {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-calendario {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+    border: 1px solid var(--rust-tint-strong);
+    border-radius: var(--r-sm);
+    color: var(--rust);
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.btn-calendario:hover {
+    background: var(--rust);
+    border-color: var(--rust);
+    color: var(--surface);
+}
+
+.btn-calendario:active {
+    transform: scale(0.95);
+}
+
+#select-mes-calendario,
+#select-anio-calendario {
+    height: 38px;
+    padding: 0 28px 0 14px;
+    background-color: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-sm);
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+#select-mes-calendario:hover,
+#select-anio-calendario:hover {
+    border-color: var(--rust-tint-strong);
+}
+
+#select-mes-calendario:focus,
+#select-anio-calendario:focus {
+    border-color: var(--rust);
+    box-shadow: 0 0 0 3px var(--rust-tint);
+}
+
+.volver-mes-actual {
+    display: flex;
+    margin: 0;
+}
+
+.volver-mes-actual button {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    height: 38px;
+    padding: 0 16px;
+    background: var(--surface);
+    border: 1px solid var(--rust-tint-strong);
+    border-radius: var(--r-sm);
+    font-family: var(--sans);
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--rust);
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.volver-mes-actual button:hover {
+    background: var(--rust);
+    border-color: var(--rust);
+    color: var(--surface);
+}
+
+.volver-mes-actual button:active {
+    transform: scale(0.97);
+}
+
+/* =========================================================
+   CALENDARIO — cuadrícula
+   ========================================================= */
+
+.contenedor-calendario,
+.anio-calendario,
+.anio-meses {
+    width: 100%;
+}
+
+.mes-calendario {
+    width: 100%;
+    margin-bottom: 26px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-card);
+}
+
+.mes-calendario-header {
+    position: relative;
+    padding: 24px;
+    text-align: center;
+    background: var(--rust);
+    border-bottom: 1px solid var(--rust-dark);
+}
+
+.mes-calendario-header::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -1px;
+    width: 44px;
+    height: 3px;
+    transform: translateX(-50%);
+    border-radius: 3px 3px 0 0;
+    background: var(--rust);
+}
+
+.mes-calendario-header h3 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    color: var(--cream);
+}
+
+.dias-semana {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    background: var(--cream-soft);
+    border-bottom: 1px solid var(--line);
+}
+
+.dia-semana {
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--rust);
+}
+
+.dias-calendario {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--line);
+}
+
+.dia-calendario {
+    position: relative;
+    min-width: 0;
+    min-height: 112px;
+    padding: 9px;
+    background: var(--surface);
+    transition: background .2s ease;
+}
+
+.dia-calendario:not(.dia-vacio):hover {
+    background: var(--cream);
+}
+
+.dia-vacio {
+    background: var(--cream);
+}
+
+.numero-dia {
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+/* Días con eventos: número destacado */
+.dia-calendario:has(.evento-calendario) .numero-dia {
+    background: var(--cream-soft);
+}
+
+.dia-hoy {
+    background: var(--rust-tint-soft);
+}
+
+.dia-hoy .numero-dia,
+.dia-hoy:has(.evento-calendario) .numero-dia {
+    background: var(--rust);
+    color: var(--surface);
+    box-shadow: 0 2px 8px rgba(168, 70, 46, 0.35);
+}
+
+/* =========================================================
+   CALENDARIO — eventos del día
+   ========================================================= */
+
+.eventos-dia {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.evento-calendario {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    width: 100%;
+    min-height: 28px;
+    padding: 4px 6px 4px 8px;
+    overflow: hidden;
+    border-radius: 7px;
+    font-size: 11.5px;
+    font-weight: 600;
+}
+
+.evento-calendario-enlace {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    min-width: 0;
+    flex: 1;
+    color: inherit;
+}
+
+.evento-calendario-enlace:hover {
+    text-decoration: underline;
+}
+
+.evento-calendario-enlace span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.evento-calendario-enlace i {
+    flex-shrink: 0;
+    font-size: 10px;
+}
+
+.evento-calendario.futuro {
+    background: var(--green-tint);
+    border-left: 3px solid var(--green);
+    color: var(--green);
+}
+
+.evento-calendario.hoy {
+    background: var(--rust-tint);
+    border-left: 3px solid var(--rust);
+    color: var(--rust-dark);
+}
+
+.evento-calendario.pasado {
+    background: var(--cream-soft);
+    border-left: 3px solid var(--ink-faint);
+    color: var(--ink-soft);
+}
+
+.btn-cancelar-calendario {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    background: transparent;
+    color: currentColor;
+    opacity: 0.65;
+    cursor: pointer;
+    transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-cancelar-calendario:hover {
+    background: rgba(0, 0, 0, 0.08);
+    opacity: 1;
+}
+
+.btn-cancelar-calendario i {
+    font-size: 10px;
+}
+
+.evento-calendario.eliminando {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+    .dia-calendario {
+        min-height: 86px;
+        padding: 6px;
+    }
+
+    .dia-semana {
+        font-size: 10px;
+    }
+
+    .numero-dia {
+        width: 23px;
+        height: 23px;
+        font-size: 11.5px;
+    }
+
+    .evento-calendario {
+        padding: 4px;
+        font-size: 10.5px;
+    }
+
+    .btn-cancelar-calendario {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 760px) {
+    .evento {
+        gap: 14px;}
+
+    
+
+    .evento h2 {
+        padding-right: 0;
+    }
+
+    .precio {
+        position: static;
+        align-items: flex-start;
+    }
+
+    .botones-evento {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .botones-evento .btn-detalles {
+        flex: 1;
+    }
+}
+
+@media (max-width: 640px) {
+    .profile-mark {
+        display: none;
+    }
+
+    
+
+    .eventos-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 600px) {
+    .calendario-barra {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .controles-calendario {
+        justify-content: center;
+        gap: 7px;
+    }
+
+    .volver-mes-actual {
+        justify-content: center;
+    }
+
+    .mes-calendario-header {
+        padding: 16px 14px 14px;
+    }
+
+    .dia-calendario {
+        min-height: 70px;
+        padding: 4px;
+    }
+
+    .dia-semana {
+        min-height: 32px;
+        font-size: 9px;
+    }
+
+    .numero-dia {
+        width: 22px;
+        height: 22px;
+        margin-bottom: 4px;
+        font-size: 11px;
+    }
+
+    .evento-calendario {
+        min-height: 24px;
+        padding: 3px;
+        font-size: 9px;
+        border-left-width: 2px;
+    }
+
+    .evento-calendario-enlace {
+        gap: 3px;
+    }
+
+    .evento-calendario-enlace i {
+        font-size: 9px;
+    }
+
+    .btn-cancelar-calendario {
+        width: 18px;
+        height: 18px;
+    }
+
+    .btn-cancelar-calendario i {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 500px) {
+    .contenedor {
+        padding: 25px 15px 60px;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 26px 22px;
+    }
+
+    .profile-info h2 {
+        justify-content: center;
+    }
+
+    .profile-info .email {
+        justify-content: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    
+
+    .opcion:hover,
+    .evento:hover {
+        transform: none;
+    }
+}
+
+/* Mantiene precio y botones dentro del flujo: sin superposiciones. */
+.evento .precio-gratis {
+    color: var(--green);
+}
+
+.evento-badge {
+    max-width: calc(100% - 60px);
+    overflow-wrap: anywhere;
+}
+
+.pv-count:empty {
+    display: none;
+}
+
+.pv-topbar {
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.pv-eyebrow,
+.pv-section-label span,
+.pv-count {
+    letter-spacing: 0;
+}
+
+.opcion-texto p {
+    overflow-wrap: anywhere;
+}
+
+.evento-calendario-enlace span {
+    min-width: 0;
+}
+
+.dia-calendario.dia-hoy {
+    background: var(--rust-tint-soft);
+}
+
+.contenedor-calendario {
+    min-width: 0;
+}
+
+@media (max-width: 960px) {
+    .evento {
+        grid-template-columns: 180px minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .evento .botones-evento {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        padding: 14px 0 0;
+        border-left: none;
+        border-top: 1px solid var(--line);
+    }
+}
+
+@media (max-width: 760px) {
+    .evento {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 16px;
+    }
+
+    .evento img {
+        height: 220px;
+        min-height: 0;
+    }
+
+    .evento .botones-evento {
+        justify-content: flex-start;
+    }
+
+    .evento .botones-evento .btn-detalles {
+        flex: 1 1 140px;
+    }
+
+    .evento .precio {
+        margin-top: 8px;
+        align-items: center;
+    }
+}
+
+@media (max-width: 640px) {
+    .opciones {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+        margin-bottom: 32px;
+    }
+
+    .opcion {
+        padding: 20px;
+    }
+
+    .eventos-header h3 {
+        font-size: 1.8rem;
+    }
+
+    .dia-calendario {
+        min-height: 86px;
+        padding: 4px;
+    }
+
+    .controles-calendario {
+        gap: 6px;
+    }
+
+    #select-mes-calendario,
+    #select-anio-calendario {
+        padding-inline: 8px;
+    }
+
+    .btn-calendario {
+        width: 36px;
+        flex-shrink: 0;
+    }
+}
+
+@media (max-width: 380px) {
+    .opcion {
+        padding: 16px;
+        gap: 12px;
+    }
+}
+
+/* =========================================================
+   REFINAMIENTOS COMPARTIDOS — sin cambios de HTML ni JavaScript
+   El navbar conserva sus reglas y estados en navbar.css.
+   Los filtros se manejan solo desde filtros.css.
+   ========================================================= */
+:root {
+    --banner-ring: color-mix(in srgb, var(--cream) 16%, transparent);
+    --banner-mark: color-mix(in srgb, var(--cream) 14%, transparent);
+    --shadow-banner: 0 12px 32px -16px color-mix(in srgb, var(--rust-dark) 55%, transparent);
+    --shadow-control: 0 3px 10px color-mix(in srgb, var(--ink) 5%, transparent);
+    --shadow-card: 0 2px 4px color-mix(in srgb, var(--ink) 3%, transparent), 0 12px 28px -16px color-mix(in srgb, var(--ink) 20%, transparent);
+    --shadow-hover: 0 18px 36px -18px color-mix(in srgb, var(--rust-dark) 30%, transparent);
+}
+
+body {
+    line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+.contenedor>* {
+    min-width: 0;
+}
+
+.profile-info .email i {
+    flex-shrink: 0;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
+.evento h2 {
+    overflow-wrap: anywhere;
+}
+
+.botones-evento a,
+.botones-evento button {
+    min-height: 42px;
+    min-width: 0;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.botones-evento i {
+    flex-shrink: 0;
+}
+
+.botones-evento button:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+@media (max-width: 640px) {
+    .contenedor {
+        padding: 26px 18px 64px;
+    }
+
+    .profile-header {
+        padding: 30px 24px;
+        gap: 22px;
+    }
+
+    .profile-info {
+        max-width: 100%;
+    }
+
+    .profile-info h2 {
+        font-size: 1.8rem;
+    }
+
+    .profile-avatar {
+        width: 70px;
+        height: 70px;
+        min-width: 70px;
+    }
+}
+
+@media (max-width: 380px) {
+    .contenedor {
+        padding-inline: 12px;
+    }
+
+    .profile-info h2 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (hover: none) {
+
+    .evento:hover,
+    .evento:hover img,
+    .opcion:hover {
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+
+    .evento:hover,
+    .evento:hover img,
+    .opcion:hover,
+    .opcion:hover .opcion-flecha {
+        transform: none;
+    }
+}
+/* Filtros de favoritos: mismo aspecto que el landing */
+#filtros-favoritos {
+    background: var(--cream);
+    box-shadow: 0 1px 2px rgba(34, 29, 24, 0.04), 0 10px 28px rgba(34, 29, 24, 0.06);
+}
+
+#filtros-favoritos .search-input {
+    padding-left: 20px;
+    background: var(--cream-soft);
+}
+
+#filtros-favoritos .cs-trigger,
+#filtros-favoritos .filter-control {
+    padding-left: 16px;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+#filtros-favoritos .cs-trigger {
+    padding-right: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -1,0 +1,141 @@
+/* =========================================================
+   EventNow — Editar evento
+   Se carga DESPUÉS de posts.css: solo lo que es propio de editar.
+   ========================================================= */
+
+/* Migas de pan */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+}
+
+.breadcrumb a:hover {
+    color: var(--rust);
+}
+
+.breadcrumb i {
+    font-size: 9px;
+    color: var(--ink-faint);
+}
+
+/* Texto "elegí tus fotos" resaltado en el dropzone */
+.dz-link {
+    color: var(--rust);
+}
+
+/* Imágenes ya guardadas */
+.imgs-actuales {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.imgs-actuales:empty {
+    display: none;
+}
+
+.img-actual {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-sm-event);
+    overflow: hidden;
+    border: 1px solid var(--line-strong);
+    background: var(--cream-soft);
+}
+
+.img-actual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.15s ease, filter 0.15s ease;
+}
+
+.img-actual.quitada img {
+    opacity: 0.35;
+    filter: grayscale(1);
+}
+
+.img-actual-quitar {
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 0 !important;
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.94);
+    border-radius: var(--radius-pill);
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+    color: var(--rust-dark) !important;
+    cursor: pointer;
+}
+
+.img-actual-quitar input {
+    width: auto !important;
+    margin: 0;
+    accent-color: var(--rust);
+}
+
+/* Botones de acción: Guardar + Cancelar */
+.acciones-editar {
+    display: flex;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.acciones-editar .btn-submit {
+    flex: 1;
+}
+
+.btn-cancelar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 26px;
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-cancelar:hover {
+    border-color: var(--rust);
+    color: var(--rust);
+}
+
+@media (max-width: 560px) {
+    .acciones-editar {
+        flex-direction: column;
+    }
+
+    .btn-cancelar {
+        padding: 14px;
+    }
+}
+
+/* Nota al pie de la vista previa */
+.aside-nota {
+    display: flex;
+    gap: 10px;
+    margin: 0;
+    font-size: 11.5px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+}
+
+.aside-nota i {
+    margin-top: 2px;
+    color: var(--ink-faint);
+}

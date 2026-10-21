@@ -1,0 +1,90 @@
+/* nuevaContra.css — complementa login.css (layout, inputs y botón vienen de ahí) */
+
+:root {
+  --nc-accent: #B25942;
+  --nc-ink: #1A1A1A;
+  --nc-muted: #737373;
+  --nc-ok: #2E7D32;
+  --nc-err: #C62828;
+  --nc-line: #E8E3DD;
+}
+
+/* Botón para mostrar/ocultar contraseña, dentro del input */
+.input-wrapper {
+  position: relative;
+}
+
+.input-wrapper input[type="password"],
+.input-wrapper input[type="text"] {
+  padding-right: 44px;
+}
+
+.toggle-pass {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  color: var(--nc-muted);
+  cursor: pointer;
+}
+
+.toggle-pass:hover {
+  color: var(--nc-ink);
+}
+
+.toggle-pass:focus-visible {
+  outline: 2px solid var(--nc-accent);
+  outline-offset: 1px;
+}
+
+/* Reglas que se tildan mientras escribe */
+.reglas {
+  list-style: none;
+  margin: 4px 0 18px;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--nc-muted);
+}
+
+.reglas li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.2s ease;
+}
+
+.reglas li.cumple {
+  color: var(--nc-ok);
+}
+
+.reglas li.cumple i::before {
+  content: "\f058"; /* fa-circle-check */
+  font-weight: 900;
+}
+
+/* Mensaje de error del servidor o del navegador */
+#msg__error {
+  margin-bottom: 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--nc-err);
+}
+
+#msg__error:empty {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reglas li {
+    transition: none;
+  }
+}

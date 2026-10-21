@@ -1,0 +1,276 @@
+/* =========================================================
+   PÁGINA DE CONFIGURACIÓN — Ubicación del visitante
+   Usa las variables de panel_visitante.css (--rust, --ink, --line...).
+========================================================= */
+
+.cfg-contenedor {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+}
+
+.cfg-titulo h1 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.8rem;
+    margin-bottom: 4px;
+    color: var(--ink);
+}
+
+.cfg-titulo h1 i {
+    color: var(--rust);
+}
+
+.cfg-titulo p {
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+}
+
+.cfg-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .cfg-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.cfg-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    padding: 24px;
+}
+
+.cfg-card-datos h2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+    color: var(--ink);
+}
+
+.cfg-card-datos h2 i {
+    color: var(--rust);
+}
+
+/* -------- Ubicación actual -------- */
+
+.cfg-ubicacion-actual {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--cream-soft);
+    border-radius: 10px;
+    padding: 12px 14px;
+}
+
+.cfg-ubicacion-actual-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+}
+
+.cfg-ubicacion-actual-valor {
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.35;
+}
+
+.cfg-separador {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 20px 0;
+}
+
+/* -------- Buscador -------- */
+
+.cfg-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+}
+
+.cfg-buscador {
+    position: relative;
+    margin-bottom: 14px;
+}
+
+.cfg-buscador i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ink-soft);
+}
+
+.cfg-buscador input {
+    width: 100%;
+    padding: 11px 14px 11px 38px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.15s ease;
+}
+
+.cfg-buscador input:focus {
+    border-color: var(--rust);
+}
+
+.cfg-sugerencias {
+    position: absolute;
+    z-index: 20;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    max-height: 220px;
+    overflow-y: auto;
+    list-style: none;
+    margin: 0;
+    padding: 4px;
+}
+
+.cfg-sugerencias li {
+    padding: 9px 10px;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    cursor: pointer;
+    line-height: 1.3;
+}
+
+.cfg-sugerencias li:hover {
+    background: var(--cream-soft);
+}
+
+/* -------- Botón geolocalización -------- */
+
+.cfg-btn-geo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--cream-soft);
+    color: var(--rust);
+    border: 1px solid var(--rust);
+    border-radius: 10px;
+    padding: 9px 14px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.cfg-btn-geo:hover {
+    background: var(--rust-tint);
+    color: var(--rust-dark);
+}
+
+.cfg-estado-geo {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    margin: 6px 0 0;
+    min-height: 1.1em;
+}
+
+.cfg-hint {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    margin: 16px 0 20px;
+}
+
+/* -------- Botón guardar -------- */
+
+.cfg-btn-guardar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    justify-content: center;
+    background: var(--rust);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.15s ease, opacity 0.15s ease;
+}
+
+.cfg-btn-guardar:hover {
+    filter: brightness(1.08);
+}
+
+.cfg-btn-guardar:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#cfg-guardar-estado {
+    text-align: center;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    min-height: 1.1em;
+}
+
+#cfg-guardar-estado.ok {
+    color: #16a34a;
+}
+
+#cfg-guardar-estado.error {
+    color: #dc2626;
+}
+
+/* -------- Mapa -------- */
+
+.cfg-card-mapa {
+    padding: 0;
+    overflow: hidden;
+    min-height: 460px;
+    position: relative;
+    z-index: 0;        /* o: isolation: isolate; */
+}
+
+.cfg-mapa {
+    width: 100%;
+    height: 100%;
+    min-height: 460px;
+}
+
+@media (max-width: 900px) {
+    .cfg-card-mapa,
+    .cfg-mapa {
+        min-height: 340px;
+    }
+}
+
+@media (max-width: 600px) {
+    .cfg-contenedor {
+        padding: 20px 16px 48px;
+    }
+
+    .cfg-card {
+        padding: 18px;
+    }
+
+    .cfg-titulo h1 {
+        font-size: 1.4rem;
+    }
+}
